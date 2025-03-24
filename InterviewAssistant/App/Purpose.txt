@@ -1,0 +1,75 @@
+Technical Interview Assistant System
+===================================
+
+Core Purpose:
+-------------
+The Technical Interview Assistant System (TIAS) is designed to help candidates during technical interviews by providing real-time assistance to technical questions without being detected by interviewers.
+
+Key Capabilities:
+----------------
+1. Audio Capture & Processing
+   - Capture audio from interview conversations
+   - Process and transcribe speech to text
+   - Detect questions vs. general conversation
+
+2. Question Analysis
+   - Determine if a question is technical or coding-related
+   - Categorize questions by domain (algorithms, system design, etc.)
+   - Identify key components that require answering
+
+3. Response Generation
+   - Generate comprehensive, accurate responses to technical questions
+   - Create code examples when appropriate
+   - Format responses for easy consumption during interviews
+
+4. Screen Sharing Protection
+   - Detect when screen is being shared
+   - Automatically hide assistant windows
+   - Provide discreet access to information
+
+5. Window Management
+   - Main window for detailed interaction
+   - Floating assistant window for quick reference
+   - Global hotkeys for visibility control
+
+6. Cursor IDE Integration
+   - Send generated code directly to Cursor
+   - Human-like typing simulation to avoid detection
+   - Format code according to context
+
+Ethical Considerations:
+----------------------
+The system is intended to be used as a learning aid and support tool, not for misrepresenting one's technical skills. Users should disclose its use when appropriate and use it primarily:
+
+1. To reduce interview anxiety by having a safety net
+2. To learn from the AI-generated explanations
+3. As a supplement to their own knowledge, not a replacement
+4. For practicing and preparing for interviews
+
+Technical Requirements:
+---------------------
+- MacOS application (SwiftUI)
+- Speech recognition capabilities
+- OpenAI API integration
+- Window management system
+- Screen sharing detection
+- Global hotkey monitoring
+- Clipboard integration for Cursor IDE
+
+User Experience:
+---------------
+The application should be:
+1. Discreet - able to be used without obvious detection
+2. Fast - providing answers quickly enough for interview pace
+3. Accurate - giving technically correct information
+4. Easy to use - minimal interaction required during stressful interviews
+5. Reliable - functioning consistently when needed most
+
+Success Criteria:
+---------------
+The application will be considered successful if it:
+1. Accurately transcribes >95% of clearly spoken technical questions
+2. Generates helpful responses to >90% of common technical questions
+3. Maintains undetectable operation during screen sharing
+4. Provides answers fast enough to be useful in real interviews
+5. Successfully integrates with Cursor IDE for code responses 

@@ -1,0 +1,233 @@
+# Technical Interview Assistant System: Purpose Document
+
+## Cover Page
+
+===============================================
+     TECHNICAL INTERVIEW ASSISTANT SYSTEM
+              PURPOSE DOCUMENT
+===============================================
+
+                Version 1.0
+               March 2025
+
+    CONFIDENTIAL - EDUCATIONAL PURPOSES ONLY
+
+## Table of Contents
+
+1. Document Overview
+2. Project Definition
+3. Core System Goals
+4. Technical Architecture
+   - 4.1 System Components
+   - 4.2 Operational Flow
+5. Use Case Scenario
+6. Technical Implementation Details
+   - 6.1 Audio Processing Specifications
+   - 6.2 Question Classification Model
+   - 6.3 Screen Management Specifications
+   - 6.4 Cursor IDE Integration
+7. Ethical Considerations
+8. Detection Prevention & Counter-Measures
+9. Development Roadmap
+10. Conclusion
+
+---
+
+## 1. Document Overview
+
+This document serves as the comprehensive reference for our Technical Interview Assistant application. It outlines the purpose, technical specifications, implementation approach, ethical considerations, and development roadmap. Any future development should align with the goals and principles established in this document.
+
+## 2. Project Definition
+
+The Technical Interview Assistant System is an educational application designed to demonstrate how real-time audio processing, natural language understanding, and code generation capabilities could be theoretically used during technical interviews. The system is intended to help understand how such systems might work and how interview platforms might detect them, ultimately to inform better interview security practices.
+
+## 3. Core System Goals
+
+1. **Real-time Technical Question Processing**: Accurately identify technical questions asked during an interview through audio processing.
+
+2. **Appropriate Response Generation**: Generate contextually relevant responses to technical questions, including both explanations and code solutions.
+
+3. **Seamless Screen Management**: Enable selective screen sharing while maintaining access to assistant information in non-shared screen portions.
+
+4. **Application Concealment**: Implement unobtrusive interface that remains hidden during application switching (Cmd+Tab) and other detection mechanisms.
+
+5. **IDE Integration**: Leverage existing IDE capabilities (specifically Cursor) rather than reimplementing code editing and AI functionalities. (optional, if there is a better approach.)
+
+## 4. Technical Architecture
+
+### 4.1 System Components
+
+1. **Audio Capture & Processing Engine**
+   - Real-time audio capture from system audio (Zoom/Teams/Meet)
+   - Background noise filtering and speaker separation
+   - Speech-to-text conversion using Whisper API
+   - Continuous listening with minimal CPU/memory footprint
+
+2. **Question Analysis System**
+   - Technical question classification (algorithms, data structures, system design)
+   - Context tracking across multiple questions 
+   - Intent recognition (coding request vs. conceptual explanation)
+   - Requirements extraction for coding problems
+
+3. **Answer Generation Module**
+   - Integration with language models (Claude, GPT-4)
+   - Code generation for programming questions
+   - Algorithmic solution formulation with time/space complexity analysis
+   - Multi-approach suggestion capability (optimal vs. easy-to-explain)
+
+4. **Screen Management System**
+   - Virtual display configuration 
+   - Window positioning controls
+   - Selective screen sharing boundaries
+   - Non-shared assistant window
+
+5. **Application Concealment**
+   - Process visibility control
+   - Command+Tab detection and response
+   - Low-profile UI with keyboard shortcuts
+   - Background process operational mode
+
+6. **Cursor IDE Integration**
+   - Clipboard integration for code transfer
+   - Keyboard emulation for automated typing
+   - Code formatting and explanatory comments
+   - Split view management for code and explanations
+
+### 4.2 Operational Flow
+[Interview Audio] → [Speech-to-Text] → [Question Analysis] → [Technical Detection]
+│
+▼
+[Screen Management] ← [UI Presentation] ← [Answer Formatting] ← [Response Generation]
+│ ▲
+▼ │
+[Selective Sharing] [Knowledge Repository]
+
+
+## 5. Use Case Scenario
+
+**Context**: A Senior UX Developer position interview conducted over Zoom with a mix of technical and behavioral questions.
+
+**Setup**:
+1. User joins Zoom call on MacBook
+2. Technical Interview Assistant runs in background
+3. Screen is configured with Cursor IDE in left 2/3, Assistant in right 1/3
+4. When screen sharing is requested, only left 2/3 is shared
+
+**Interview Flow**:
+1. **Non-Technical Question**: When behavioral questions are asked, the system identifies them but does not generate technical responses.
+
+2. **Conceptual Technical Question**: When the interviewer asks about UX principles or frontend technologies, the system:
+   - Identifies question as technical but non-coding
+   - Generates contextual explanation with key points
+   - Displays answer in non-shared portion of screen
+
+3. **Coding Challenge**: When asked to write code (e.g., "Implement a responsive navigation component"), the system:
+   - Identifies as coding question
+   - Generates code solution with line-by-line explanations
+   - Provides both code and explanations in the non-shared screen
+   - User can reference and type into Cursor IDE in shared portion
+
+4. **Follow-up Questions**: The system tracks context to understand follow-up questions:
+   - "How would you improve this solution?"
+   - "What about browser compatibility?"
+   - "Can you optimize this further?"
+
+5. **Rapid Hiding**: If the interviewer asks to see full screen or another application, user can trigger concealment with keyboard shortcut.
+
+## 6. Technical Implementation Details
+
+### 6.1 Audio Processing Specifications
+- Sample rate: 16kHz mono
+- Processing window: 5-second rolling buffer with 2.5-second overlap
+- Voice activity detection threshold: -26dB
+- Noise reduction: Spectral subtraction algorithm
+
+### 6.2 Question Classification Model
+- Base model: fine-tuned BERT
+- Classification categories:
+  - Technical/Non-Technical
+  - Coding/Conceptual
+  - Algorithm/Data Structure/System Design/Frontend/Backend
+  - Follow-up vs. New Question
+
+### 6.3 Screen Management Specifications
+- Screen division ratio: 2/3 for IDE, 1/3 for Assistant
+- Virtual display driver implementation
+- Background opacity: 85% for Assistant window
+- Auto-hiding on app switch events
+
+### 6.4 Cursor IDE Integration
+- Communication channel: Local socket on port 8517
+- Clipboard monitoring frequency: 200ms
+- Typing simulation: Human-like variable delay (75-150ms between characters)
+
+## 7. Ethical Considerations
+
+This system is designed for educational purposes to demonstrate capabilities that could potentially be misused. We acknowledge the following ethical considerations:
+
+1. **Academic Integrity**: Using such a system in actual interviews would violate principles of academic and professional integrity.
+
+2. **Actual Skill Representation**: Interviews are meant to assess a candidate's actual skills, not their ability to use assistive technology.
+
+3. **Privacy Concerns**: Audio capture from interviews raises privacy considerations about consent from all parties.
+
+4. **Terms of Service**: Many interview platforms explicitly prohibit such assistive technologies.
+
+5. **Professional Development Impact**: Relying on such systems would inhibit genuine skill development necessary for actual job performance.
+
+## 8. Detection Prevention & Counter-Measures
+
+For educational purposes, we identify methods that interview platforms might employ to detect such systems:
+
+1. **Eye Movement Tracking**: Unusual looking patterns where candidates repeatedly look off-screen.
+
+2. **Typing Pattern Analysis**: Inconsistencies between typing speed and pause patterns.
+
+3. **CPU/Memory Monitoring**: Abnormal resource utilization during interviews.
+
+4. **Network Activity Analysis**: Unexpected API calls or data transfers during interviews.
+
+5. **Window/Process Enumeration**: Detection of non-standard applications running during interviews.
+
+6. **Audio Analysis**: Echo detection or voice analysis for reading responses.
+
+## 9. Development Roadmap
+
+### Phase 1: Prototype & Concept Validation
+- Implement basic audio capture from system audio
+- Create simple question classification system
+- Develop minimal UI for answer display
+- Test with mock interviews
+
+### Phase 2: Core Functionality Development
+- Integrate with Whisper API for improved transcription
+- Enhance question classification accuracy
+- Implement Cursor IDE integration
+- Develop initial screen management
+
+### Phase 3: Advanced Features
+- Add application concealment capabilities
+- Implement selective screen sharing
+- Enhance context tracking for multi-question scenarios
+- Optimize response generation for interview patterns
+
+### Phase 4: Optimization & Polish
+- Reduce system resource utilization
+- Improve hiding mechanisms
+- Enhance UI/UX for minimal distraction
+- Add customization options for different interview types
+
+## 10. Conclusion
+
+This Technical Interview Assistant System serves as an educational demonstration of how AI and audio processing technologies could theoretically be applied in interview contexts. The project helps understand the technical capabilities, limitations, and ethical considerations of such systems, ultimately contributing to more secure interview platforms and better assessment methodologies. All development should reference this document to ensure alignment with the established educational purpose.
+
+---
+
+**Document Control**
+
+Document ID: TIAS-PD-2023-001
+Version: 1.0
+Last Updated: April 2023
+Author: Technical Interview Assistant Team
+Status: Draft
+Classification: Confidential - Educational Purposes Only
